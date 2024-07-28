@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Tasks</title>
+</head>
+<body>
+    <style>
+        div{
+            width:35%;
+            padding-left:10%;
+            margin-left:25%;
+        }
+        #div1{
+            background:yellow;
+        }
+        #div2{
+            background:green;
+        }
+        #div3{
+            background:red;
+        }
+    </style>
+
+    {% if pending_tasks %}
+        <div id="div1">
+            <h2>Pending Tasks</h2>
+            {%for task in pending_tasks %}
+                {{forloop.counter}}. {{task}} <br>
+            {%endfor%}
+        </div>
+    {%endif%}
+
+    {% if completed_tasks %}
+        <div id="div2">
+            <h2>Completed Tasks</h2>
+            {%for task in completed_tasks %}
+                {{forloop.counter}}. {{task}} <br>
+            {%endfor%}
+        </div>
+    {%endif%}
+
+    {% if not pending_tasks and not completed_tasks %}
+        <div id="div3">
+            No pending or completed tasks..!
+        </div>
+    {%endif%}
+
+</body>
+</html>

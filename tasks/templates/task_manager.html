@@ -1,0 +1,74 @@
+<style>
+    div{
+        width:40%;
+        background:#bfbfbf;
+        padding:16px 0 16px 10%;
+        margin-left:25%;
+        font-size:14px;
+        
+    }
+    div#taskViewDiv{
+        background:#333333;
+        color:white;
+        
+    }
+    button#save_entry{
+        background:greenyellow;
+        border-radius:8px;
+    }
+    a{  
+        color:rgb(169, 10, 242);
+        font-size:12px;
+    }
+    a.view_completed{
+        color:rgb(105, 105, 130);
+        float:right;
+        margin-bottom: 0px;
+        margin-right:8px;
+    }
+    a.view_completed:hover{
+        color:yellow;
+    }
+    a:hover{
+        color:red;
+    }
+    a.mark_completed:hover{
+        color:greenyellow;
+    }
+    a:active{
+        color:yellow;
+    }
+    span#congrats{
+        font-size:smaller;
+        color:red;
+    }
+</style>
+
+<div id="mainDiv">
+    <h2>Task Manager</h2>
+
+    <form action="/add-task/" method="GET">
+        Enter Task <input type="text" name="task">
+        
+        <button id="save_entry">Add</button>
+
+    </form>
+</div>
+
+<div id="taskViewDiv">
+{% if tasks %}
+    
+        {% for task in tasks %}
+            {{forloop.counter}}|{{task}} <a class="mark_completed" href="/complete_task/{{forloop.counter}}/">Mark Completed</a> <a href="/delete-task/{{forloop.counter}}/">Remove</a>
+            <br>
+        {% endfor %}
+    
+{% else %}
+        <span id='congrats'>Congratulations..You dont have any pending tasks...</span>
+{% endif %}
+
+<a class="view_completed" href="/completed_tasks/">View Completed tasks</a>
+<a class="view_completed" href="/all_tasks/">All tasks</a>
+
+
+</div>
